@@ -16,21 +16,6 @@ class NotificationController extends Controller
         return view('notifications.index', compact('notifications'));
     }
 
-    public function markAsRead(string $id)
-    {
-        $notification = auth()->user()
-            ->notifications()
-            ->whereKey($id)
-            ->firstOrFail();
-
-        $notification->markAsRead();
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Notification marked as read.',
-        ]);
-    }
-
     public function latest()
     {
         $user = auth()->user();
